@@ -20,3 +20,8 @@ app.MapGet("greet/{name}", (string name) => $"Hello, {name}!");
 // http://localhost:5000/greet/George -> Hello, George!
 
 app.Run();
+
+// Using with AoT compilation:
+//[JsonSerializable(typeof(string)), JsonSerializable(typeof(string[])), JsonSerializable(typeof(int)), JsonSerializable(typeof(int[])), JsonSerializable(typeof(bool))]
+//[JsonSerializable(typeof(LogRequest))]
+//internal partial class ApiJsonContext : JsonSerializerContext;
