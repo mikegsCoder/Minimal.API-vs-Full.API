@@ -14,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 // Simple examples:
-app.MapGet("greet", () => "Hello, world!");  
+app.MapGet("greet", () => "Hello, world!");
 // http://localhost:5000/greet -> Hello, world!
+app.MapGet("greet/{name}", (string name) => $"Hello, {name}!");
+// http://localhost:5000/greet/George -> Hello, George!
 
 app.Run();
