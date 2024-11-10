@@ -10,4 +10,8 @@
         <!--<PublishAoT>true</PublishAoT>-->
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Core\Core.csproj" />
+    </ItemGroup>
+
 </Project>

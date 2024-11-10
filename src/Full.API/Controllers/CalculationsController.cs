@@ -1,0 +1,18 @@
+﻿namespace Full.API.Controllers;
+
+using Core.Contracts;
+using Microsoft.AspNetCore.Mvc;
+
+[Route("calc")]
+public class CalculationsController(ICalculator calculator) : ControllerBase
+{
+    private readonly ICalculator _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
+
+    [HttpGet("add")]
+    public IActionResult Add([FromQuery] int a, [FromQuery] int b)
+    {
+        var result = this._calculator.Add(a, b);
+        return this.Ok($"{a} + {b} = {result}");
+        // http://localhost:5000/calc/add?a=2&b=5 -> 2 + 5 = 7
+    }
+}
