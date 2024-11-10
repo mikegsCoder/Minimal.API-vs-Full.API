@@ -33,6 +33,9 @@ calcGroup.MapGet("add", ([FromQuery] int a, [FromQuery] int b, [FromServices] IC
 calcGroup.MapGet("subtract", ([FromQuery] int a, [FromQuery] int b, [FromServices] ICalculator calculator) => $"{a} - {b} = {calculator.Subtract(a, b)}");
 // http://localhost:5000/calc/subtract?a=2&b=5 -> 2 - 5 = -3
 
+calcGroup.MapGet("multiply", ([FromQuery] int a, [FromQuery] int b, [FromServices] ICalculator calculator) => $"{a} * {b} = {calculator.Multiply(a, b)}");
+// http://localhost:5000/calc/multiply?a=2&b=5 -> 2 * 5 = 10
+
 app.Run();
 
 // Using with AoT compilation:

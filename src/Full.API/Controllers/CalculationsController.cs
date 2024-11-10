@@ -23,4 +23,12 @@ public class CalculationsController(ICalculator calculator) : ControllerBase
         return this.Ok($"{a} - {b} = {result}");
         // http://localhost:5000/calc/subtract?a=2&b=5 -> 2 - 5 = -3
     }
+
+    [HttpGet("multiply")]
+    public IActionResult Multiply([FromQuery] int a, [FromQuery] int b)
+    {
+        var result = this._calculator.Multiply(a, b);
+        return this.Ok($"{a} * {b} = {result}");
+        // http://localhost:5000/calc/multiply?a=2&b=5 -> 2 * 5 = 10
+    }
 }
