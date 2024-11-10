@@ -15,4 +15,12 @@ public class CalculationsController(ICalculator calculator) : ControllerBase
         return this.Ok($"{a} + {b} = {result}");
         // http://localhost:5000/calc/add?a=2&b=5 -> 2 + 5 = 7
     }
+
+    [HttpGet("subtract")]
+    public IActionResult Subtract([FromQuery] int a, [FromQuery] int b)
+    {
+        var result = this._calculator.Subtract(a, b);
+        return this.Ok($"{a} - {b} = {result}");
+        // http://localhost:5000/calc/subtract?a=2&b=5 -> 2 - 5 = -3
+    }
 }

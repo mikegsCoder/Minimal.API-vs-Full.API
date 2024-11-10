@@ -30,6 +30,9 @@ calcGroup.MapGet("add", ([FromQuery] int a, [FromQuery] int b, [FromServices] IC
 // http://localhost:5000/calc/add?a=2&b=5 -> 2 + 5 = 7
 // http://localhost:5000/calc/add?x=2&y=5 -> Status Code:400 Bad Request
 
+calcGroup.MapGet("subtract", ([FromQuery] int a, [FromQuery] int b, [FromServices] ICalculator calculator) => $"{a} - {b} = {calculator.Subtract(a, b)}");
+// http://localhost:5000/calc/subtract?a=2&b=5 -> 2 - 5 = -3
+
 app.Run();
 
 // Using with AoT compilation:
