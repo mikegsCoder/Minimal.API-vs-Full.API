@@ -39,6 +39,9 @@ calcGroup.MapGet("multiply", ([FromQuery] int a, [FromQuery] int b, [FromService
 calcGroup.MapGet("divide", ([FromQuery] int a, [FromQuery] int b, [FromServices] ICalculator calculator) => $"{a} / {b} = {calculator.Divide(a, b)}");
 // http://localhost:5000/calc/divide?a=10&b=2 -> 10 / 2 = 5
 
+calcGroup.MapGet("primes", ([FromQuery] int max, [FromServices] ICalculator calculator) => $"Primes to {max} are: {string.Join(", ", calculator.FindAllPrimes(max))}");
+// http://localhost:5000/calc/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
+
 app.Run();
 
 // Using with AoT compilation:

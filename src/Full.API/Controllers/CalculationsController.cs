@@ -39,4 +39,12 @@ public class CalculationsController(ICalculator calculator) : ControllerBase
         return this.Ok($"{a} / {b} = {result}");
         // http://localhost:5000/calc/divide?a=10&b=2 -> 10 / 2 = 5
     }
+
+    [HttpGet("primes")]
+    public IActionResult Primes([FromQuery] int max)
+    {
+        var result = this._calculator.FindAllPrimes(max);
+        return this.Ok($"Primes to {max} are: {string.Join(", ", result)}");
+        // http://localhost:5000/calc/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
+    }
 }
