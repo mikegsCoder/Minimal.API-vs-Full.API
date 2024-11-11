@@ -31,4 +31,12 @@ public class CalculationsController(ICalculator calculator) : ControllerBase
         return this.Ok($"{a} * {b} = {result}");
         // http://localhost:5000/calc/multiply?a=2&b=5 -> 2 * 5 = 10
     }
+
+    [HttpGet("divide")]
+    public IActionResult Divide([FromQuery] int a, [FromQuery] int b)
+    {
+        var result = this._calculator.Divide(a, b);
+        return this.Ok($"{a} / {b} = {result}");
+        // http://localhost:5000/calc/divide?a=10&b=2 -> 10 / 2 = 5
+    }
 }
