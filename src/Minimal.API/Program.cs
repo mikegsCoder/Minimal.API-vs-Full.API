@@ -42,6 +42,9 @@ calcGroup.MapGet("divide", ([FromQuery] int a, [FromQuery] int b, [FromServices]
 calcGroup.MapGet("primes", ([FromQuery] int max, [FromServices] ICalculator calculator) => $"Primes to {max} are: {string.Join(", ", calculator.FindAllPrimes(max))}");
 // http://localhost:5000/calc/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
 
+calcGroup.MapGet("fibonacci", ([FromQuery] int len, [FromServices] ICalculator calculator) => $"Fibonacci sequence first {len} are: {string.Join(", ", calculator.FibonacciIterative(len))}");
+// http://localhost:5000/calc/fibonacci?len=10 -> Fibonacci sequence first 10 are: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55
+
 app.Run();
 
 // Using with AoT compilation:

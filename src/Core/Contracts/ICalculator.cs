@@ -11,4 +11,6 @@ public interface ICalculator
     int Divide(int a, int b);
 
     int[] FindAllPrimes(int max);
+
+    int[] FibonacciIterative(int len);
 }

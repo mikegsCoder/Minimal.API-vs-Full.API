@@ -47,4 +47,12 @@ public class CalculationsController(ICalculator calculator) : ControllerBase
         return this.Ok($"Primes to {max} are: {string.Join(", ", result)}");
         // http://localhost:5000/calc/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
     }
+
+    [HttpGet("fibonacci")]
+    public IActionResult Fibonacci([FromQuery] int len)
+    {
+        var result = this._calculator.FibonacciIterative(len);
+        return this.Ok($"Fibonacci sequence first {len} are: {string.Join(", ", result)}");
+        // http://localhost:5000/calc/fibonacci?len=10 -> Fibonacci sequence first 10 are: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55
+    }
 }

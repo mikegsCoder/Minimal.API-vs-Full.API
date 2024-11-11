@@ -30,4 +30,20 @@ public class Calculator : ICalculator
 
         return primes.ToArray();
     }
+
+    public int[] FibonacciIterative(int len)
+    {
+        var fibonacci = new List<int>() { 0 };
+        int a = 0, b = 1, c = 0;
+
+        for (int i = 2; i <= len; i++)
+        {
+            c = a + b;
+            fibonacci.Add(c);
+            a = b;
+            b = c;
+        }
+
+        return fibonacci.ToArray();
+    }
 }
