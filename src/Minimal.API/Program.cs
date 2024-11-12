@@ -28,6 +28,9 @@ app.MapGet("greet/{name}", (string name) => $"Hello, {name}!");
 // Examples of using synchronous logic:
 app.AddCalculations();
 
+// Examples of using asynchronous logic:
+app.AddCalculationsAsync();
+
 app.Run();
 
 // Using with AoT compilation:
