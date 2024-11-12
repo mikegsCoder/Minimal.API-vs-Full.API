@@ -5,6 +5,7 @@ using Core.Contracts;
 public class Calculator : ICalculator
 {
     public int Add(int a, int b) => a + b;
+    public Task<int> AddAsync(int a, int b, CancellationToken cancellationToken) => WaitAndExecuteTwoParams(Add, a, b);
 
     public int Subtract(int a, int b) => a - b;
 
@@ -45,5 +46,11 @@ public class Calculator : ICalculator
         }
 
         return fibonacci.ToArray();
+    }
+
+    private static async Task<int> WaitAndExecuteTwoParams(Func<int, int, int> func, int a, int b)
+    {
+        await Task.Delay(2000);
+        return func(a, b);
     }
 }
