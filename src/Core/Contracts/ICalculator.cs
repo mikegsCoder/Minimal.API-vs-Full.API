@@ -9,6 +9,7 @@ public interface ICalculator
     Task<int> SubtractAsync(int a, int b, CancellationToken cancellationToken);
 
     int Multiply(int a, int b);
+    Task<int> MultiplyAsync(int a, int b, CancellationToken cancellationToken);
 
     int Divide(int a, int b);
 
