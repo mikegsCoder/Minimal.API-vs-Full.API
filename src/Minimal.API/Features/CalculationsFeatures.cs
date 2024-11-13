@@ -43,6 +43,13 @@ namespace Minimal.API.Features
             // http://localhost:5000/calc-async/add?a=2&b=5 -> 2 + 5 = 7
             // http://localhost:5000/calc-async/add?x=2&y=5 -> Status Code:400 Bad Request
 
+            asyncCalcGroup.MapGet("subtract", async ([FromQuery] int a, [FromQuery] int b, [FromServices] ICalculator calculator, CancellationToken cancellationToken) =>
+            {
+                var result = await calculator.SubtractAsync(a, b, cancellationToken);
+                return Results.Ok($"{a} - {b} = {result}");
+            });
+            // http://localhost:5000/calc-async/subtract?a=2&b=5 -> 2 - 5 = -3
+
         }
     }
 }

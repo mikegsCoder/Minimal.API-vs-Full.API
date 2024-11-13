@@ -15,4 +15,12 @@ public class AsyncCalculationsController(ICalculator calculator) : ControllerBas
         return this.Ok($"{a} + {b} = {result}");
     }
     // http://localhost:5000/calc-async/add?a=2&b=5 -> 2 + 5 = 7
+
+    [HttpGet("subtract")]
+    public async Task<IActionResult> Subtract([FromQuery] int a, [FromQuery] int b, CancellationToken cancellationToken)
+    {
+        var result = await this._calculator.SubtractAsync(a, b, cancellationToken);
+        return this.Ok($"{a} - {b} = {result}");
+    }
+    // http://localhost:5000/calc-async/subtract?a=2&b=5 -> 2 - 5 = -3
 }
