@@ -6,6 +6,7 @@ public interface ICalculator
     Task<int> AddAsync(int a, int b, CancellationToken cancellationToken);
 
     int Subtract(int a, int b);
+    Task<int> SubtractAsync(int a, int b, CancellationToken cancellationToken);
 
     int Multiply(int a, int b);
 

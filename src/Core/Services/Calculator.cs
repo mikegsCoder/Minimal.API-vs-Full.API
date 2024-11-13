@@ -8,6 +8,7 @@ public class Calculator : ICalculator
     public Task<int> AddAsync(int a, int b, CancellationToken cancellationToken) => WaitAndExecuteTwoParams(Add, a, b);
 
     public int Subtract(int a, int b) => a - b;
+    public Task<int> SubtractAsync(int a, int b, CancellationToken cancellationToken) => WaitAndExecuteTwoParams(Subtract, a, b);
 
     public int Multiply(int a, int b) => a * b;
 
