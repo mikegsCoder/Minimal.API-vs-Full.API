@@ -12,6 +12,7 @@ public interface ICalculator
     Task<int> MultiplyAsync(int a, int b, CancellationToken cancellationToken);
 
     int Divide(int a, int b);
+    Task<int> DivideAsync(int a, int b, CancellationToken cancellationToken);
 
     int[] FindAllPrimes(int max);
 

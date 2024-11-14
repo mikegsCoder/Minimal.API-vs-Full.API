@@ -56,6 +56,13 @@ namespace Minimal.API.Features
                 return Results.Ok($"{a} * {b} = {result}");
             });
             // http://localhost:5000/calc-async/multiply?a=2&b=5 -> 2 * 5 = 10
+
+            asyncCalcGroup.MapGet("divide", async ([FromQuery] int a, [FromQuery] int b, [FromServices] ICalculator calculator, CancellationToken cancellationToken) =>
+            {
+                var result = await calculator.DivideAsync(a, b, cancellationToken);
+                return Results.Ok($"{a} / {b} = {result}");
+            });
+            // http://localhost:5000/calc-async/divide?a=10&b=2 -> 10 / 2 = 5
         }
     }
 }

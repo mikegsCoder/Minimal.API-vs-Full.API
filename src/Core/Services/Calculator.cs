@@ -14,6 +14,7 @@ public class Calculator : ICalculator
     public Task<int> MultiplyAsync(int a, int b, CancellationToken cancellationToken) => WaitAndExecuteTwoParams(Multiply, a, b);
 
     public int Divide(int a, int b) => a / b;
+    public Task<int> DivideAsync(int a, int b, CancellationToken cancellationToken) => WaitAndExecuteTwoParams(Divide, a, b);
 
     public int[] FindAllPrimes(int max)
     {
