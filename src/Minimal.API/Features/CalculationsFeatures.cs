@@ -63,6 +63,13 @@ namespace Minimal.API.Features
                 return Results.Ok($"{a} / {b} = {result}");
             });
             // http://localhost:5000/calc-async/divide?a=10&b=2 -> 10 / 2 = 5
+
+            asyncCalcGroup.MapGet("primes", async ([FromQuery] int max, [FromServices] ICalculator calculator, CancellationToken cancellationToken) =>
+            {
+                var result = await calculator.FindAllPrimesAsync(max, cancellationToken);
+                return Results.Ok($"Primes to {max} are: {string.Join(", ", result)}");
+            });
+            // http://localhost:5000/calc-async/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
         }
     }
 }

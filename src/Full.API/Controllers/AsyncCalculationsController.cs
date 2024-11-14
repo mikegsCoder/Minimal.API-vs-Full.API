@@ -39,4 +39,12 @@ public class AsyncCalculationsController(ICalculator calculator) : ControllerBas
         return this.Ok($"{a} / {b} = {result}");
     }
     // http://localhost:5000/calc-async/divide?a=10&b=2 -> 10 / 2 = 5
+
+    [HttpGet("primes")]
+    public async Task<IActionResult> Primes([FromQuery] int max, CancellationToken cancellationToken)
+    {
+        var result = await this._calculator.FindAllPrimesAsync(max, cancellationToken);
+        return this.Ok($"Primes to {max} are: {string.Join(", ", result)}");
+    }
+    // http://localhost:5000/calc-async/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
 }
