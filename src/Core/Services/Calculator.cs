@@ -34,6 +34,7 @@ public class Calculator : ICalculator
 
         return primes.ToArray();
     }
+    public Task<int[]> FindAllPrimesAsync(int max, CancellationToken cancellationToken) => WaitAndExecuteOneParam(FindAllPrimes, max);
 
     public int[] FibonacciIterative(int len)
     {
@@ -49,6 +50,12 @@ public class Calculator : ICalculator
         }
 
         return fibonacci.ToArray();
+    }
+
+    private static async Task<int[]> WaitAndExecuteOneParam(Func<int, int[]> func, int a)
+    {
+        await Task.Delay(2000);
+        return func(a);
     }
 
     private static async Task<int> WaitAndExecuteTwoParams(Func<int, int, int> func, int a, int b)

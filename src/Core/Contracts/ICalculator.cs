@@ -15,6 +15,7 @@ public interface ICalculator
     Task<int> DivideAsync(int a, int b, CancellationToken cancellationToken);
 
     int[] FindAllPrimes(int max);
+    Task<int[]> FindAllPrimesAsync(int max, CancellationToken cancellationToken);
 
     int[] FibonacciIterative(int len);
 }
