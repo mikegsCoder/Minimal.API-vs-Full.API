@@ -70,6 +70,13 @@ namespace Minimal.API.Features
                 return Results.Ok($"Primes to {max} are: {string.Join(", ", result)}");
             });
             // http://localhost:5000/calc-async/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
+
+            asyncCalcGroup.MapGet("fibonacci", async ([FromQuery] int len, [FromServices] ICalculator calculator, CancellationToken cancellationToken) =>
+            {
+                var result = await calculator.FibonacciIterativeAsync(len, cancellationToken);
+                return Results.Ok($"Fibonacci sequence first {len} are: {string.Join(", ", result)}");
+            });
+            // http://localhost:5000/calc-async/fibonacci?len=10 -> Fibonacci sequence first 10 are: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55
         }
     }
 }

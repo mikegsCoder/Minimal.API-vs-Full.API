@@ -51,6 +51,7 @@ public class Calculator : ICalculator
 
         return fibonacci.ToArray();
     }
+    public Task<int[]> FibonacciIterativeAsync(int len, CancellationToken cancellationToken) => WaitAndExecuteOneParam(FibonacciIterative, len);
 
     private static async Task<int[]> WaitAndExecuteOneParam(Func<int, int[]> func, int a)
     {

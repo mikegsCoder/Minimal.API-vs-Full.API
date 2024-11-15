@@ -47,4 +47,12 @@ public class AsyncCalculationsController(ICalculator calculator) : ControllerBas
         return this.Ok($"Primes to {max} are: {string.Join(", ", result)}");
     }
     // http://localhost:5000/calc-async/primes?max=10 -> Primes to 10 are: 2, 3, 5, 7
+
+    [HttpGet("fibonacci")]
+    public async Task<IActionResult> Fibonacci([FromQuery] int len, CancellationToken cancellationToken)
+    {
+        var result = await this._calculator.FibonacciIterativeAsync(len, cancellationToken);
+        return this.Ok($"Fibonacci sequence first {len} are: {string.Join(", ", result)}");
+    }
+    // http://localhost:5000/calc-async/fibonacci?len=10 -> Fibonacci sequence first 10 are: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55
 }
