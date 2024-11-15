@@ -25,11 +25,13 @@ app.MapGet("greet", () => "Hello, world!");
 app.MapGet("greet/{name}", (string name) => $"Hello, {name}!");
 // http://localhost:5000/greet/George -> Hello, George!
 
-// Examples of using synchronous logic:
+// Examples of using calculations synchronous logic:
 app.AddCalculations();
 
-// Examples of using asynchronous logic:
+// Examples of using calculations asynchronous logic:
 app.AddCalculationsAsync();
+
+app.AddInformations();
 
 app.Run();
 
