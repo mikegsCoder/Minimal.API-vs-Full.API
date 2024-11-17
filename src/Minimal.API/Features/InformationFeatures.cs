@@ -32,6 +32,14 @@ namespace Minimal.API.Features
             // Response sattus: 200 OK
             // Response body: "20241116-f8b0f69b-091c-46a3-bc9d-818176228b74"
             // and .log file is created
+
+            infoGroup.MapGet("reflection", () =>
+            {
+                var type = Assembly.GetExecutingAssembly().GetType("Minimal.API.LoadDynamically");
+                return type is not null;
+            });
+            // http://localhost:5000/info/reflection
+            // true
         }
     }
 }
