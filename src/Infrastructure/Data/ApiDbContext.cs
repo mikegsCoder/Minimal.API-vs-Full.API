@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data.Models;
+﻿using Infrastructure.Data.Configuration;
+using Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -21,6 +22,11 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new StatusConfiguration());
+            builder.ApplyConfiguration(new UserTaskConfiguration());
+
             base.OnModelCreating(builder);
         }
     }
