@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
@@ -7,6 +8,11 @@ namespace Infrastructure.Data
         public ApiDbContext(DbContextOptions<ApiDbContext> options)
                 : base(options)
         { }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserTask> Tasks { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Status> Statuses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
