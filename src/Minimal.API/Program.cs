@@ -4,6 +4,7 @@ using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using Core.Contracts;
 using Core.Services;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Minimal.API.Features;
 
@@ -14,7 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolverChain.Insert(0, ApiJsonContext.Default));
 
 // Add services into IoC container:
+builder.Services.AddDbContext<ApiDbContext>();
 builder.Services.AddSingleton<ICalculator, Calculator>();
+builder.Services.AddSingleton<ILogWriter, LogWriter>();
 
 // Create app:
 var app = builder.Build();
