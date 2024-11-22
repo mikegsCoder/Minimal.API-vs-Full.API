@@ -1,5 +1,5 @@
 ﻿using Core.Contracts;
-using Core.Models.Log;
+using Core.Models.LogModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 

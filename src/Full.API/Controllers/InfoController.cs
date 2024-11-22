@@ -3,7 +3,7 @@
 using Core.Contracts;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Core.Models.Log;
+using Core.Models.LogModel;
 
 [Route("info")]
 public class InfoController : ControllerBase
