@@ -1,4 +1,4 @@
-﻿namespace Core.Models.Db
+﻿namespace Core.Models.DbModels
 {
     public class TaskModel
     {
