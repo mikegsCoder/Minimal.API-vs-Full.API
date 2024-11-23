@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services into IoC container:
 builder.Services.AddDbContext<ApiDbContext>();
+builder.Services.AddSingleton<IDbService, DbService>();
 builder.Services.AddSingleton<ICalculator, Calculator>();
 builder.Services.AddSingleton<ILogWriter, LogWriter>();
 

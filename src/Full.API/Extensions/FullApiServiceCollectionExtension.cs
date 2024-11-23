@@ -7,6 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddSingleton(typeof(IDbService), typeof(DbService));
             services.AddSingleton(typeof(ICalculator), typeof(Calculator));
             services.AddSingleton(typeof(ILogWriter), typeof(LogWriter));
 
