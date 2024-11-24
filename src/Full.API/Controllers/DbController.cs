@@ -45,6 +45,7 @@ public class DbController(IDbService dbService) : ControllerBase
     //        "lastName": "Petrov"
     //    }
     //]
+    //
     // http://localhost:5000/db/users?username=peter123
     // Response sattus: 200 OK
     //{

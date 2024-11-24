@@ -36,6 +36,7 @@ app.AddCalculations();
 app.AddCalculationsAsync();
 
 app.AddInformations();
+app.AddDbFeatures();
 
 app.Run();
 
