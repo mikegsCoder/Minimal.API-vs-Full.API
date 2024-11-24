@@ -45,5 +45,31 @@ namespace Core.Services
 
             return users;
         }
+
+        public async Task<UserModel> GetUserByUsernameAsync(string username, CancellationToken cancellationToken)
+        {
+            var user = await this._db.Users
+                .Where(x => x.Username == username)
+                .Select(u => new UserModel
+                {
+                    Id = u.Id,
+                    Username = u.Username,
+                    FirstName = u.FirstName,
+                    LastName = u.LatName,
+                    Tasks = u.Tasks
+                        .Select(t => new TaskModel
+                        {
+                            Id = t.Id,
+                            Category = t.Category.Name,
+                            Status = t.Status.Name,
+                            User = t.User.Username,
+                            Description = t.Description,
+                        })
+                        .ToArray(),
+                })
+                .FirstOrDefaultAsync();
+
+            return user;
+        }
     }
 }

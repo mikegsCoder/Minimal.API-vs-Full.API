@@ -12,5 +12,7 @@ namespace Core.Contracts
     public interface IDbService
     {
         Task<IEnumerable<UserModel>> GetAllUsersAsync(CancellationToken cancellationToken);
+
+        Task<UserModel> GetUserByUsernameAsync(string username, CancellationToken cancellationToken);
     }
 }
