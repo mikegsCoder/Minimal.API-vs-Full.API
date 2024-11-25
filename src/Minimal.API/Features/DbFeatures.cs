@@ -62,6 +62,18 @@ namespace Minimal.API.Features
             //        }
             //    ]
             //}
+
+            infoGroup.MapGet("tasks", async ([FromServices] IDbService db, CancellationToken cancellationToken) => await db.GetAllTasksAsync(cancellationToken));
+            // http://localhost:5000/db/tasks
+            //[
+            //    {
+            //        "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+            //        "category": "Personal",
+            //        "status": "In Progress",
+            //        "user": "peter123",
+            //        "description": "Create MinimalAPI demo project."
+            //    }
+            //]
         }
     }
 }
