@@ -63,4 +63,21 @@ public class DbController(IDbService dbService) : ControllerBase
     //    "firstName": "Peter",
     //    "lastName": "Petrov"
     //}
+
+    [HttpGet("tasks")]
+    public async Task<IActionResult> AllTasks(CancellationToken cancellationToken)
+    {
+        var result = await this._db.GetAllTasksAsync(cancellationToken);
+        return this.Ok(result);
+    }
+    // http://localhost:5000/db/tasks
+    //[
+    //    {
+    //        "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+    //        "category": "Personal",
+    //        "status": "In Progress",
+    //        "user": "peter123",
+    //        "description": "Create MinimalAPI demo project."
+    //    }
+    //]
 }
