@@ -71,5 +71,21 @@ namespace Core.Services
 
             return user;
         }
+
+        public async Task<IEnumerable<TaskModel>> GetAllTasksAsync(CancellationToken cancellationToken)
+        {
+            var tasks = await this._db.Tasks
+                .Select(t => new TaskModel
+                {
+                    Id = t.Id,
+                    Category = t.Category.Name,
+                    Status = t.Status.Name,
+                    User = t.User.Username,
+                    Description = t.Description,
+                })
+                .ToArrayAsync();
+
+            return tasks;
+        }
     }
 }

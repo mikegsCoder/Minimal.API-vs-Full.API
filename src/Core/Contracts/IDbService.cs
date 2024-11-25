@@ -14,5 +14,7 @@ namespace Core.Contracts
         Task<IEnumerable<UserModel>> GetAllUsersAsync(CancellationToken cancellationToken);
 
         Task<UserModel> GetUserByUsernameAsync(string username, CancellationToken cancellationToken);
+
+        Task<IEnumerable<TaskModel>> GetAllTasksAsync(CancellationToken cancellationToken);
     }
 }
