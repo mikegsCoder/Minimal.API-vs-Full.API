@@ -87,5 +87,28 @@ namespace Core.Services
 
             return tasks;
         }
+
+        public async Task<IEnumerable<CategoryModel>> GetAllCategoriesAsync(CancellationToken cancellationToken)
+        {
+            var categories = await this._db.Categories
+                .Select(c => new CategoryModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Tasks = c.Tasks
+                        .Select(t => new TaskModel
+                        {
+                            Id = t.Id,
+                            Category = t.Category.Name,
+                            Status = t.Status.Name,
+                            User = t.User.Username,
+                            Description = t.Description,
+                        })
+                        .ToArray(),
+                })
+                .ToArrayAsync();
+
+            return categories;
+        }
     }
 }
