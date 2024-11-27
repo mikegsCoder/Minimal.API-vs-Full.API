@@ -110,5 +110,28 @@ namespace Core.Services
 
             return categories;
         }
+
+        public async Task<IEnumerable<StatusModel>> GetAllStatusesAsync(CancellationToken cancellationToken)
+        {
+            var statuses = await this._db.Statuses
+                .Select(c => new StatusModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Tasks = c.Tasks
+                        .Select(t => new TaskModel
+                        {
+                            Id = t.Id,
+                            Category = t.Category.Name,
+                            Status = t.Status.Name,
+                            User = t.User.Username,
+                            Description = t.Description,
+                        })
+                        .ToArray(),
+                })
+                .ToArrayAsync();
+
+            return statuses;
+        }
     }
 }

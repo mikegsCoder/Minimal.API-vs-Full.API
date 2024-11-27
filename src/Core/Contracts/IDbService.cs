@@ -18,5 +18,7 @@ namespace Core.Contracts
         Task<IEnumerable<TaskModel>> GetAllTasksAsync(CancellationToken cancellationToken);
 
         Task<IEnumerable<CategoryModel>> GetAllCategoriesAsync(CancellationToken cancellationToken);
+
+        Task<IEnumerable<StatusModel>> GetAllStatusesAsync(CancellationToken cancellationToken);
     }
 }
