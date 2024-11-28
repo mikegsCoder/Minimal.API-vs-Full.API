@@ -156,4 +156,91 @@ public class DbController(IDbService dbService) : ControllerBase
     //        "tasks": []
     //    }
     //]
+
+    [HttpPost("users")]
+    public async Task<IActionResult> CreateUser([FromBody] UserBody? user, [FromQuery] string? username, [FromQuery] string? firstName, [FromQuery] string? lastName, CancellationToken cancellationToken)
+    {
+        if (user != null)
+        {
+            await this._db.CreateUserAsync(user.Username, user.FirstName, user.LastName, cancellationToken);
+        }
+        else if (username != null && firstName != null && lastName != null)
+        {
+            await this._db.CreateUserAsync(username, firstName, lastName, cancellationToken);
+        }
+
+        return this.Created();
+    }
+    // POST with Postman to:
+    // localhost:5000/db/users?username=george123&firstName=George&lastName=Smith
+    // Response sattus: 204 No Content
+    // http://localhost:5000/db/users
+    //[
+    //    {
+    //        "id": "1b8b644f-5dea-45da-9ab3-0797dedb304e",
+    //        "tasks": [],
+    //        "username": "george123",
+    //        "firstName": "George",
+    //        "lastName": "Smith"
+    //    },
+    //    {
+    //        "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+    //        "tasks": [
+    //            {
+    //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+    //                "category": "Personal",
+    //                "status": "In Progress",
+    //                "user": "peter123",
+    //                "description": "Create MinimalAPI demo project."
+    //            }
+    //        ],
+    //        "username": "peter123",
+    //        "firstName": "Peter",
+    //        "lastName": "Petrov"
+    //    }
+    //]
+    //
+    // POST with Postman to:
+    // localhost:5000/db/users
+    // Headers:
+    //     Content-Type: application/json
+    // Body:
+    // {
+    //     "username" : "bobby123",
+    //     "firstName" : "Bobby",
+    //     "lastName" : "Talor"
+    // }
+    // Response sattus: 204 No Content
+    // http://localhost:5000/db/users
+    //[
+    //    {
+    //        "id": "1b8b644f-5dea-45da-9ab3-0797dedb304e",
+    //        "tasks": [],
+    //        "username": "george123",
+    //        "firstName": "George",
+    //        "lastName": "Smith"
+    //    },
+    //    {
+    //        "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+    //        "tasks": [
+    //            {
+    //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+    //                "category": "Personal",
+    //                "status": "In Progress",
+    //                "user": "peter123",
+    //                "description": "Create MinimalAPI demo project."
+    //            }
+    //        ],
+    //        "username": "peter123",
+    //        "firstName": "Peter",
+    //        "lastName": "Petrov"
+    //    },
+    //    {
+    //    "id": "da60395b-8a0c-45a4-8688-ec5ea6601841",
+    //        "tasks": [],
+    //        "username": "bobby123",
+    //        "firstName": "Bobby",
+    //        "lastName": "Talor"
+    //    }
+    //]
 }
