@@ -133,5 +133,18 @@ namespace Core.Services
 
             return statuses;
         }
+
+        public async Task CreateUserAsync(string username, string firstName, string lastName, CancellationToken cancellationToken)
+        {
+            var user = new User
+            {
+                Username = username,
+                FirstName = firstName,
+                LatName = lastName,
+            };
+
+            await this._db.Users.AddAsync(user, cancellationToken);
+            await this._db.SaveChangesAsync(cancellationToken);
+        }
     }
 }
