@@ -140,6 +140,92 @@ namespace Minimal.API.Features
             //        "tasks": []
             //    }
             //]
+
+            infoGroup.MapPost("users", async ([FromBody] UserBody? user, [FromQuery] string? username, [FromQuery] string? firstName, [FromQuery] string? lastName, [FromServices] IDbService db, CancellationToken cancellationToken) =>
+            {
+                if (user != null)
+                {
+                    await db.CreateUserAsync(user.Username, user.FirstName, user.LastName, cancellationToken);
+                }
+                else if (username != null && firstName != null && lastName != null)
+                {
+                    await db.CreateUserAsync(username, firstName, lastName, cancellationToken);
+                }
+
+                return Results.Created();
+            });
+            // POST with Postman to:
+            // localhost:5000/db/users?username=george321&firstName=George&lastName=Jackson
+            // Response sattus: 201 Created
+            // http://localhost:5000/db/users
+            //[
+            //    {
+            //        "id": "2899c551-b2e6-4844-9801-68c896320713",
+            //        "tasks": [],
+            //        "username": "george321",
+            //        "firstName": "George",
+            //        "lastName": "Jackson"
+            //    },
+            //    {
+            //                "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+            //        "tasks": [
+            //            {
+            //                    "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+            //                "category": "Personal",
+            //                "status": "In Progress",
+            //                "user": "peter123",
+            //                "description": "Create MinimalAPI demo project."
+            //            }
+            //        ],
+            //        "username": "peter123",
+            //        "firstName": "Peter",
+            //        "lastName": "Petrov"
+            //    }
+            //]
+            //
+            // POST with Postman to:
+            // localhost:5000/db/users
+            // Headers:
+            //     Content-Type: application/json
+            // Body:
+            // {
+            //     "username" : "bobby123",
+            //     "firstName" : "Bobby",
+            //     "lastName" : "Talor"
+            // }
+            // Response sattus: 201 Created
+            // http://localhost:5000/db/users
+            //[
+            //    {
+            //        "id": "2899c551-b2e6-4844-9801-68c896320713",
+            //        "tasks": [],
+            //        "username": "george321",
+            //        "firstName": "George",
+            //        "lastName": "Jackson"
+            //    },
+            //    {
+            //                "id": "49665db1-63c5-4f9a-b652-445c4c5b0508",
+            //        "tasks": [],
+            //        "username": "bobby123",
+            //        "firstName": "Bobby",
+            //        "lastName": "Talor"
+            //    },
+            //    {
+            //                "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+            //        "tasks": [
+            //            {
+            //                    "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+            //                "category": "Personal",
+            //                "status": "In Progress",
+            //                "user": "peter123",
+            //                "description": "Create MinimalAPI demo project."
+            //            }
+            //        ],
+            //        "username": "peter123",
+            //        "firstName": "Peter",
+            //        "lastName": "Petrov"
+            //    }
+            //]
         }
     }
 }
