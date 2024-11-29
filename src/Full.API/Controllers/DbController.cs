@@ -243,4 +243,30 @@ public class DbController(IDbService dbService) : ControllerBase
     //        "lastName": "Talor"
     //    }
     //]
+
+    [HttpPut("users")]
+    public async Task<IActionResult> UpdateUser([FromBody] UserBody user, CancellationToken cancellationToken)
+    {
+        await this._db.UpdateUserAsync(user.Username, user.FirstName, user.LastName, cancellationToken);
+        return this.Ok();
+    }
+    // PUT with Postman to localhost:5000/db/users
+    // Headers:
+    //     Content-Type: application/json
+    // Body:
+    // {
+    //     "username" : "NewUsername321",
+    //     "firstName" : "Bobby",
+    //     "lastName" : "Talor"
+    // }
+    // Response sattus: 200 Ok
+    //
+    // http://localhost:5000/db/users?username=NewUsername321
+    //{
+    //    "id": "da60395b-8a0c-45a4-8688-ec5ea6601841",
+    //    "tasks": [],
+    //    "username": "NewUsername321",
+    //    "firstName": "Bobby",
+    //    "lastName": "Talor"
+    //}
 }
