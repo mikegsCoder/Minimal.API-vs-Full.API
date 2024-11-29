@@ -226,6 +226,32 @@ namespace Minimal.API.Features
             //        "lastName": "Petrov"
             //    }
             //]
+
+            infoGroup.MapPut("users", async ([FromBody] UserBody user, [FromServices] IDbService db, CancellationToken cancellationToken) =>
+            {
+                await db.UpdateUserAsync(user.Username, user.FirstName, user.LastName, cancellationToken);
+
+                return Results.Ok();
+            });
+            // PUT with Postman to localhost:5000/db/users
+            // Headers:
+            //     Content-Type: application/json
+            // Body:
+            // {
+            //     "username" : "NewUsername321",
+            //     "firstName" : "Bobby",
+            //     "lastName" : "Talor"
+            // }
+            // Response sattus: 200 Ok
+            //
+            // http://localhost:5000/db/users?username=NewUsername321
+            //{
+            //    "id": "49665db1-63c5-4f9a-b652-445c4c5b0508",
+            //    "tasks": [],
+            //    "username": "NewUsername321",
+            //    "firstName": "Bobby",
+            //    "lastName": "Talor"
+            //}
         }
     }
 }
