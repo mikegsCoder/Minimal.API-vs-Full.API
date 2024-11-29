@@ -146,5 +146,17 @@ namespace Core.Services
             await this._db.Users.AddAsync(user, cancellationToken);
             await this._db.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task UpdateUserAsync(string username, string firstName, string lastName, CancellationToken cancellation)
+        {
+            var user = await this._db.Users
+                .Where(x => x.FirstName == firstName && x.LatName == lastName)
+                .FirstOrDefaultAsync();
+
+            user.Username = username;
+
+            this._db.Users.Update(user);
+            await this._db.SaveChangesAsync();
+        }
     }
 }

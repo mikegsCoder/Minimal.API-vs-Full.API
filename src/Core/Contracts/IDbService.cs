@@ -22,5 +22,7 @@ namespace Core.Contracts
         Task<IEnumerable<StatusModel>> GetAllStatusesAsync(CancellationToken cancellationToken);
 
         Task CreateUserAsync(string username, string firstName, string lastName, CancellationToken cancellation);
+
+        Task UpdateUserAsync(string username, string firstName, string lastName, CancellationToken cancellation);
     }
 }
