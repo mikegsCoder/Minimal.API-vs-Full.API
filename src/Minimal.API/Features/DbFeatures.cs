@@ -167,10 +167,10 @@ namespace Minimal.API.Features
             //        "lastName": "Jackson"
             //    },
             //    {
-            //                "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+            //        "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
             //        "tasks": [
             //            {
-            //                    "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+            //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
             //                "category": "Personal",
             //                "status": "In Progress",
             //                "user": "peter123",
@@ -204,17 +204,17 @@ namespace Minimal.API.Features
             //        "lastName": "Jackson"
             //    },
             //    {
-            //                "id": "49665db1-63c5-4f9a-b652-445c4c5b0508",
+            //        "id": "49665db1-63c5-4f9a-b652-445c4c5b0508",
             //        "tasks": [],
             //        "username": "bobby123",
             //        "firstName": "Bobby",
             //        "lastName": "Talor"
             //    },
             //    {
-            //                "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+            //        "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
             //        "tasks": [
             //            {
-            //                    "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+            //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
             //                "category": "Personal",
             //                "status": "In Progress",
             //                "user": "peter123",
@@ -252,6 +252,42 @@ namespace Minimal.API.Features
             //    "firstName": "Bobby",
             //    "lastName": "Talor"
             //}
+
+            infoGroup.MapDelete("users", async ([FromQuery] string username, [FromServices] IDbService db, CancellationToken cancellationToken) =>
+            {
+                await db.DeleteUserByUsernameAsync(username, cancellationToken);
+
+                return Results.NoContent();
+            });
+            // DELETE with Postman to:
+            // localhost:5000/db/users?username=NewUsername321
+            // Response sattus: 204 No Content
+            //
+            // http://localhost:5000/db/users
+            //[
+            //    {
+            //        "id": "2899c551-b2e6-4844-9801-68c896320713",
+            //        "tasks": [],
+            //        "username": "george321",
+            //        "firstName": "George",
+            //        "lastName": "Jackson"
+            //    },
+            //    {
+            //        "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+            //        "tasks": [
+            //            {
+            //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+            //                "category": "Personal",
+            //                "status": "In Progress",
+            //                "user": "peter123",
+            //                "description": "Create MinimalAPI demo project."
+            //            }
+            //        ],
+            //        "username": "peter123",
+            //        "firstName": "Peter",
+            //        "lastName": "Petrov"
+            //    }
+            //]
         }
     }
 }
