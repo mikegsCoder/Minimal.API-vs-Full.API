@@ -269,4 +269,47 @@ public class DbController(IDbService dbService) : ControllerBase
     //    "firstName": "Bobby",
     //    "lastName": "Talor"
     //}
+
+    [HttpDelete("users")]
+    public async Task<IActionResult> DeleteUser([FromQuery] string username, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await this._db.DeleteUserByUsernameAsync(username, cancellationToken);
+            return this.NoContent();
+        }
+        catch (Exception)
+        {
+            return this.BadRequest();
+        }
+    }
+    // DELETE with Postman to:
+    // localhost:5000/db/users?username=NewUsername321
+    // Response sattus: 204 No Content
+    //
+    // http://localhost:5000/db/users
+    //[
+    //    {
+    //        "id": "1b8b644f-5dea-45da-9ab3-0797dedb304e",
+    //        "tasks": [],
+    //        "username": "george123",
+    //        "firstName": "George",
+    //        "lastName": "Smith"
+    //    },
+    //    {
+    //        "id": "90b21bc9-9062-4142-b3f9-774e6797e080",
+    //        "tasks": [
+    //            {
+    //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+    //                "category": "Personal",
+    //                "status": "In Progress",
+    //                "user": "peter123",
+    //                "description": "Create MinimalAPI demo project."
+    //            }
+    //        ],
+    //        "username": "peter123",
+    //        "firstName": "Peter",
+    //        "lastName": "Petrov"
+    //    }
+    //]
 }
