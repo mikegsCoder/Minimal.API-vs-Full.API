@@ -158,5 +158,15 @@ namespace Core.Services
             this._db.Users.Update(user);
             await this._db.SaveChangesAsync();
         }
+
+        public async Task DeleteUserByUsernameAsync(string username, CancellationToken cancellation)
+        {
+            var user = await this._db.Users
+               .Where(x => x.Username == username)
+               .FirstOrDefaultAsync();
+
+            this._db.Users.Remove(user);
+            await this._db.SaveChangesAsync();
+        }
     }
 }

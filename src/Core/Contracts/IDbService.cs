@@ -24,5 +24,7 @@ namespace Core.Contracts
         Task CreateUserAsync(string username, string firstName, string lastName, CancellationToken cancellation);
 
         Task UpdateUserAsync(string username, string firstName, string lastName, CancellationToken cancellation);
+
+        Task DeleteUserByUsernameAsync(string username, CancellationToken cancellation);
     }
 }
