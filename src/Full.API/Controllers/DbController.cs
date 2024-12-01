@@ -312,4 +312,57 @@ public class DbController(IDbService dbService) : ControllerBase
     //        "lastName": "Petrov"
     //    }
     //]
+
+    [HttpPut("tasks")]
+    public async Task<IActionResult> UpdateTask([FromQuery] string taskId, [FromQuery] string statusName, CancellationToken cancellationToken)
+    {
+        await this._db.UpdateТаsкAsync(taskId, statusName, cancellationToken);
+        return this.Ok();
+    }
+    // PUT with Postman to:
+    // http://localhost:5000/db/tasks?taskId=23bf9c00-056c-4c72-9fa7-396c28da66c7&statusName=Finished
+    // Response sattus: 200 Ok
+    //
+    // http://localhost:5000/db/tasks
+    //[
+    //    {
+    //        "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+    //        "category": "Personal",
+    //        "status": "Finished",
+    //        "user": "peter123",
+    //        "description": "Create MinimalAPI demo project."
+    //    }
+    //]
+    //
+    // http://localhost:5000/db/statuses
+    //[
+    //    {
+    //        "id": "0a7bead2-d075-4100-b803-05498f07347b",
+    //        "name": "In Progress",
+    //        "tasks": []
+    //    },
+    //    {
+    //        "id": "2b381501-15b1-488b-96e2-950869d68d79",
+    //        "name": "Finished",
+    //        "tasks": [
+    //            {
+    //                "id": "23bf9c00-056c-4c72-9fa7-396c28da66c7",
+    //                "category": "Personal",
+    //                "status": "Finished",
+    //                "user": "peter123",
+    //                "description": "Create MinimalAPI demo project."
+    //            }
+    //        ]
+    //    },
+    //    {
+    //        "id": "d920dc1b-fab5-40cc-a387-81f7059da658",
+    //        "name": "Canceled",
+    //        "tasks": []
+    //    },
+    //    {
+    //        "id": "f83e8ace-ea2c-48f0-846d-1f86c7eb127d",
+    //        "name": "Awaiting",
+    //        "tasks": []
+    //    }
+    //]
 }
