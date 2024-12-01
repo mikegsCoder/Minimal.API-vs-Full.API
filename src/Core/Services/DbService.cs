@@ -168,5 +168,21 @@ namespace Core.Services
             this._db.Users.Remove(user);
             await this._db.SaveChangesAsync();
         }
+
+        public async Task UpdateТаsкAsync(string taskId, string statusName, CancellationToken cancellation)
+        {
+            var task = await this._db.Tasks
+                .Where(x => x.Id == taskId)
+                .FirstOrDefaultAsync();
+
+            var newStatus = await this._db.Statuses
+                .Where(x => x.Name == statusName)
+                .FirstOrDefaultAsync();
+
+            task.Status = newStatus;
+
+            this._db.Update(task);
+            await this._db.SaveChangesAsync();
+        }
     }
 }
