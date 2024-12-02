@@ -1,8 +1,6 @@
 ﻿using Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Core.Models;
-using System.Reflection;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Minimal.API.Features
 {

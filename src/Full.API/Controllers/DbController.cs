@@ -3,7 +3,6 @@
 using Core.Contracts;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 [Route("db")]
 public class DbController(IDbService dbService) : ControllerBase

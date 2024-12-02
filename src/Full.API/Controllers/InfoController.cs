@@ -1,7 +1,6 @@
 ﻿namespace Full.API.Controllers;
 
 using Core.Contracts;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Core.Models.LogModel;
 

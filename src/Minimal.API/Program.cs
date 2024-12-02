@@ -1,11 +1,6 @@
-using System.Reflection;
-using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
-using System.Threading;
 using Core.Contracts;
 using Core.Services;
 using Infrastructure.Data;
-using Microsoft.AspNetCore.Mvc;
 using Minimal.API.Features;
 
 //var builder = WebApplication.CreateSlimBuilder(args);

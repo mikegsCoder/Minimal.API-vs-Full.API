@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Security.Cryptography;
-using System.Text;
 using Infrastructure.Data.Models;
 
 namespace Infrastructure.Data.Configuration
