@@ -7,5 +7,6 @@
 - C#
 - Entity Framework Core
 - SQLite
+- Postman
 
 ![API](https://github.com/user-attachments/assets/ad7ef4d0-28dc-4d0f-925a-501a0cf6dbb3)
